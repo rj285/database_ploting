@@ -29,7 +29,7 @@ while True:
     mean_price = sum(npricez) / len(npricez)
     median = statistics.median(npricez)
     mode = statistics.mode(npricez)
-    std = np.std(npricez)
+    sd = np.std(npricez)
     
     x = np.array(sorted(date))
     y = np.array(sorted(pd.to_numeric(nprice)))
@@ -43,9 +43,9 @@ while True:
     plt.axhline(y=mean_price, color='r', linestyle='--', label=f"mean_price: {mean_price}")
     plt.axhline(y=mode, color='b', linestyle='--', label=f"mode: {mode}")
     plt.axhline(y=median, color='y', linestyle='--', label=f"median: {median}")
-    plt.axhline(y=std, color='g', linestyle='--', label=f"standerd deviation: {std}")
+    plt.axhline(y=sd, color='g', linestyle='--', label=f"standerd deviation: {sd}")
     
-    plt.title("MEAN / MEDIAN / MODE / STD")
+    plt.title("MEAN / MEDIAN / MODE / SD")
     plt.xlabel("DATES")
     plt.ylabel("NORMALIZED PRICE")
     plt.legend()
