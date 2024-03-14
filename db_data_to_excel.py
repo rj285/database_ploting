@@ -8,10 +8,11 @@ import json
 
 connect = mysql.connector.connect(
     host="localhost",
-    user="romart_database",
-    password="romart1234",
+    user="romart_user",
+    password="romartuser",
     database="romart_db"
 )
+
 
 cursor = connect.cursor()
 

@@ -2,23 +2,28 @@ import mysql.connector
 import json
 import pandas as pd
 
-
+# Establish connection to MySQL
 connect = mysql.connector.connect(
     host="localhost",
-    user="romart_database",
-    password="romart1234",
+    user="romart_user",
+    password="romartuser",
     database="romart_db"
 )
 
 cursor = connect.cursor()
 
+# Read data from CSV
 data = pd.read_csv("data.csv")
-    # print(data)
+
+# Convert 'history' column to JSON
 data['history'] = data['history'].apply(eval)
-    # print(data['history'])
 data['history'] = data['history'].apply(json.dumps)
-    # print(data['history'])
+
+# Iterate through rows and insert into MySQL
 for _, row in data.iterrows():
-    cursor.execute("INSERT INTO pis_tb (id, name, price, history) VALUES (%s, %s, %s, %s)", tuple(row))
+    query = "INSERT INTO pis_tb (id, name, price, history) VALUES (%s, %s, %s, %s)"
+    cursor.execute(query, (row['id'], row['name'], row['price'], row['history']))
+
+# Commit changes and close connection
 connect.commit()
 connect.close()
