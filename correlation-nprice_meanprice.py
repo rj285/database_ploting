@@ -44,5 +44,5 @@ while True:
     plt.ylabel("MEAN PRICE")
     plt.grid()
     plt.legend()
-    plt.show()
     plt.savefig("1_correlation-nprice_meanprice.png")
+    plt.show()
